@@ -3,7 +3,9 @@ package test;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Solution {
@@ -158,7 +160,7 @@ public List<String> find_permutation(String S) {
     
    private void permute(String S,String out,List<String>  permu)
    {
-       if(S.length() == 0)
+       if(out != "" || S.length() == 0)
        {
            permu.add(out);
            return;
@@ -272,8 +274,130 @@ public boolean isValid1(String s) {
        }
    return true;     
 }
- 
-   
+
+public static boolean areIsomorphic(String str1,String str2)
+{
+    if(str1.length() != str2.length())
+    {
+        return false;
+    }
+    
+    Map<Character,Character> mapCall = new HashMap<>();
+    
+    for(int i = 0; i < str2.length(); i++)
+    {
+        char ch1 = str1.charAt(i);
+        char ch2 = str2.charAt(i);
+        if(mapCall.containsKey(ch1))
+        {
+            if(mapCall.get(ch1) != ch2)
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if(mapCall.containsValue(ch2))
+            {
+                return false;
+            }
+            mapCall.put(ch1,ch2);
+        }   
+    }
+return true;    
+}
+
+static String encryptString(String S){
+    
+    StringBuilder sb = new StringBuilder();
+    int count = 1;
+    int i = S.length()-1;
+    
+    while(i >= 0)
+    {
+        if(0 <= i - 1 && S.charAt(i) == S.charAt(i-1))
+        {
+            count++;
+        }
+        else
+        {
+            sb.append(Integer.toHexString(count)).append(S.charAt(i));
+        }
+        i--;
+    }
+return sb.toString();    
+}
+
+
+public String countAndSay(int n) {
+    
+    if(n == 1)
+    {
+        return "1";
+    }
+    
+    StringBuilder ans = new StringBuilder();
+    
+    String str = countAndSay(n - 1);
+    
+    int count = 0;
+    
+    for(int i = 0; i < str.length();i++)
+    {
+        count++;
+        if(i == str.length() - 1 ||str.charAt(i) != str.charAt(i+1))
+        {
+            ans.append(count).append(str.charAt(i));
+            count = 0;
+        }    
+    }
+return ans.toString();     
+}
+
+public List<String> compareString(String str1,String str2)
+{
+	
+	char saved = 0;
+	char dummy = 0;
+	List<String> list = new ArrayList<>(); 
+	String out="";
+	for(int i = 0; i < str1.length(); i++)
+	{
+		if(str1.charAt(i) != str2.charAt(i))
+		{
+			saved = str1.charAt(i);
+			dummy = str2.charAt(i);
+			out=saved+""+dummy;
+			list.add(out);
+		}
+		
+	}
+	
+	return list;
+}
+
+public String removePalindrome(String str)
+{
+	char[] saved = str.toCharArray();
+	String dummy = "";
+	String output = "";
+	
+	
+	for(int i = 0; i < str.length();i++)
+	{
+		dummy = saved[i] + dummy;
+	}
+	System.out.println(dummy);
+	for(int i = 0; i < str.length();i++)
+	{
+		if(str.charAt(i) != dummy.charAt(i))
+		{
+			output += str.charAt(i);
+		}
+	}
+return output;	
+}
+
 	public static void main(String[] args) {
 			
 			Solution solCall = new Solution();
@@ -315,7 +439,7 @@ public boolean isValid1(String s) {
 			break;
 			
 		case 7:
-			List<String> output1 = solCall.find_permutation("ABC");
+			List<String> output1 = solCall.find_permutation("abc");
 			System.out.println(output1);
 			break;
 		
@@ -328,8 +452,30 @@ public boolean isValid1(String s) {
 		case 9:
 			boolean out1 = solCall.isValid1("(){}}{"); 
 			System.out.println(out1);
+			break;
+			
+		case 10:
+			boolean out2 = Solution.areIsomorphic("aabc", "xxyy"); 
+			System.out.println(out2);
+			break;
+		
+		case 11:
+			String str1 = Solution.encryptString("abbc");
+			System.out.println(str1);
+			break;
+			
+		case 12:
+			String str2 = solCall.countAndSay(4);
+			System.out.println(str2);
+			break;
+			
+		case 13:
+			System.out.println(solCall.compareString("abcddefgilom", "abdcdeffgklm"));
+			break;
+			
+		case 14:
+			System.out.println(solCall.removePalindrome("He did a good deed"));
 			break;	
-					
 	}
 	scan.close();
 	}
