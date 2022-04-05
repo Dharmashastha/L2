@@ -2,6 +2,7 @@ package test;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -105,7 +106,7 @@ String modify (String s)
     {
         if(s.charAt(i) == 'a' || s.charAt(i) == 'e' ||  s.charAt(i) == 'i' ||  s.charAt(i) == 'o' ||  s.charAt(i) == 'u')
         {
-            s.replace(s.charAt(i),saved.charAt(j)); 
+            s = s.replace(s.charAt(i),saved.charAt(j)); 
             j++;
         }
     }
@@ -163,7 +164,7 @@ public List<String> find_permutation(String S) {
        if(out != "" || S.length() == 0)
        {
            permu.add(out);
-           return;
+           //return;
        }
        
        for(int i = 0; i < S.length();i++)
@@ -398,6 +399,226 @@ public String removePalindrome(String str)
 return output;	
 }
 
+public List<String> findPermutation(char[] arr) {
+    
+    List<String> permu=new ArrayList<String>();
+   // Arrays.sort(arr);
+    String s = new String(arr); 
+    permute1(s,"",permu);
+    Collections.sort(permu);
+    return permu;
+    }
+    
+    
+   private void permute1(String s,String out,List<String>  permu)
+   {
+       if(out != "" || s.length() == 0)
+       {
+           permu.add(out);
+       }
+       
+       for(int i = 0; i < s.length();i++)
+       {
+           char ch = s.charAt(i);
+           String ans = s.substring(0,i) + s.substring(i+1);
+           permute1(ans,out+ch,permu);
+       }
+   }
+ 
+public String firstCharacter(String str)
+{
+	String saved = "";
+	for(int i = 0; i < str.length(); i++)
+	{
+		char ch = str.charAt(i);
+		if(str.lastIndexOf(ch) == str.indexOf(ch))
+		{
+			saved += ch; 
+		}
+	}
+	if(saved == "")
+	{
+		return "no matching character";
+	}
+	return saved.charAt(0)+"";
+}
+
+public boolean rotationString(String str1,String str2)
+{
+	if(str1.length() != str2.length())
+	{
+		return false;
+	}
+	if((str1.substring(2) + str1.substring(0, 2)).equals(str2) || 
+	  (str1.substring(str1.length() - 2) + str1.substring(0, str1.length() - 2)).equals(str2))
+		{
+			return true;
+		}
+	return false;
+}
+
+int longestUniqueSubsttr(String s){
+    
+    List<Character> list = new ArrayList<>();
+    int i = 0,max = 0;
+    
+    while(i < s.length())
+    {
+        if(list.contains(s.charAt(i)))
+        {
+            list.remove(0);
+        }
+        else
+        {
+            list.add(s.charAt(i));
+            max = Math.max(max,list.size());
+            i++;
+        }
+    }
+return max;    
+}
+
+
+public String commonFragment(String str1,String str2,String str3)
+{
+	String saved = "";
+	String output = "";
+	for(int i = 0; i < str1.length();i++)
+	{
+		
+		if(str1.charAt(i) != ' ')
+		{
+			saved += str1.charAt(i);
+		}
+		else
+		{
+			if(str2.contains(saved) && str3.contains(saved))
+			{
+				output += saved;
+			}
+			saved="";
+		}
+		
+	}
+	
+	return output;
+}
+
+public String convertEnglish(int number)
+{
+	
+	int length = Integer.toString(number).length();
+	
+	if(length == 0)
+	{
+		return "The number is empty";
+	}
+	
+	if(length > 4)
+	{
+		return "The given number has more than 4 digits";
+	}
+	
+	String output = "";
+	String num = Integer.toString(number);
+	StringBuilder ob=new StringBuilder(num);
+	String t=ob.reverse().toString();
+	int z = 0;
+	int k=0;
+	String ans = "";
+	
+	String onePos[] = {"Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
+	
+	String twoPos[] = {"Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+	
+	String threePos[] = {"","","Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+	
+	String lastPos[] = {"Hundred", "Thousand"};
+	
+	String hunPos[] = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
+	
+	for(int i=0;i <t.length();i++)
+	{
+		if(i == 0)
+		{
+			k=Integer.parseInt(t.charAt(i)+"");
+			z = k;
+			output += onePos[k];
+			ans=output;
+		}
+		
+		if(i == 1)
+		{
+			if(t.charAt(i) == '1')
+			{
+				output = twoPos[z];
+			}
+			else
+			{
+				k=Integer.parseInt(t.charAt(i)+"");
+				if(k != 0)
+				{
+					output = threePos[k]+ans;
+					ans = output;
+				}
+				else
+				{
+					output = "And" + ans;
+				}
+				
+			}
+		}
+		
+		if(i == 2)
+		{
+			k = Integer.parseInt(t.charAt(i)+"");
+			if(k != 0)
+			{
+			output = hunPos[k] + lastPos[0] + "And" + ans;
+			}
+			ans = output;
+		}
+		
+		if(i == 3)
+		{
+			k = Integer.parseInt(t.charAt(i)+"");
+			if(k != 0)
+			{
+				output = hunPos[k] + lastPos[1] + ans;
+			}
+			
+		}
+	}
+	
+	return output;
+}
+
+public boolean magicalString(String str1,String str2)
+{
+	if(str1.length() != str2.length())
+	{
+		return false;
+	}
+	
+	Map<Character,Character> ans = new HashMap<>();
+	char ch1 = 'z';
+	for(char ch = 'a'; ch <= 'z';ch++)
+	{
+		ans.put(ch, ch1);
+		ch1--;
+	}
+	
+	for(int i = 0; i < str1.length();i++)
+	{
+		if(ans.get(str1.charAt(i)) != str2.charAt(i))
+		{
+			return false;
+		}
+	}
+	
+	return true;
+}
+    
 	public static void main(String[] args) {
 			
 			Solution solCall = new Solution();
@@ -475,6 +696,38 @@ return output;
 			
 		case 14:
 			System.out.println(solCall.removePalindrome("He did a good deed"));
+			break;
+			
+		case 15:
+			char ch[] = {'a','b','c'};
+			System.out.println(solCall.findPermutation(ch));
+			break;
+		
+		case 16:
+			System.out.println(solCall.firstCharacter("abcabc"));
+			break;
+			
+		case 17:
+			System.out.println(solCall.rotationString("Hello from here", "erHello from he"));
+			break;
+		
+		case 18:
+			System.out.println(solCall.longestUniqueSubsttr("geeksforgeeks"));
+			break;
+			
+		case 19:
+			System.out.println(solCall.commonFragment(
+					"Every morning I want to do exercise regularly",
+					"Every morning I want to do meditation without fail", 
+					"It is important that I want to be happy always"));
+			break;
+			
+		case 20:
+			System.out.println(solCall.convertEnglish(123));
+			break;
+		
+		case 21:
+			System.out.println(solCall.magicalString("bda", "ywz"));
 			break;	
 	}
 	scan.close();
