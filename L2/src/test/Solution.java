@@ -2,12 +2,12 @@ package test;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Solution {
 	
@@ -161,10 +161,10 @@ public List<String> find_permutation(String S) {
     
    private void permute(String S,String out,List<String>  permu)
    {
-       if(out != "" || S.length() == 0)
+       if(S.length() == 0)
        {
            permu.add(out);
-           //return;
+           return;
        }
        
        for(int i = 0; i < S.length();i++)
@@ -246,35 +246,36 @@ public List<String> find_permutation(String S) {
    return false;
    }   
 
-   
 public boolean isValid1(String s) {
        
-		int count1 = 0;
-		int count2 = 0;
-		int count3 = 0;
-		
+       Stack<Character> stk = new Stack<>();
+       
        for(int i = 0; i < s.length(); i++)
        {
-           if(s.charAt(i) == '(' || s.charAt(i) == ')')
+           char ch = s.charAt(i);
+           
+           switch(ch)
            {
-        	 count1++;  
-           }
-           if(s.charAt(i) == '[' || s.charAt(i) == ']')
-           {
-        	 count2++;  
-           }
-           if(s.charAt(i) == '{' || s.charAt(i) == '}')
-           {
-        	 count3++;  
-           }
+               case '[':
+                       stk.push(']');
+                       break;
+           
+               case '(':
+                       stk.push(')');
+                       break;
+           
+               case '{':
+                       stk.push('}');
+                       break;
+               default :
+                   if(stk.isEmpty() || stk.pop() != ch)
+                   {
+                       return false;
+                   }
+           }       
        }
-       
-       if(count1 % 2 != 0 || count2 % 2 != 0 || count3 % 2 != 0)
-       {
-    	   return false;
-       }
-   return true;     
-}
+       return stk.isEmpty();   
+   }  
 
 public static boolean areIsomorphic(String str1,String str2)
 {
@@ -379,21 +380,25 @@ public List<String> compareString(String str1,String str2)
 
 public String removePalindrome(String str)
 {
-	char[] saved = str.toCharArray();
-	String dummy = "";
+	String reverse = "";
+	String saved = "";
 	String output = "";
 	
-	
 	for(int i = 0; i < str.length();i++)
 	{
-		dummy = saved[i] + dummy;
-	}
-	System.out.println(dummy);
-	for(int i = 0; i < str.length();i++)
-	{
-		if(str.charAt(i) != dummy.charAt(i))
+		if(str.charAt(i) != ' ')
 		{
-			output += str.charAt(i);
+			saved += str.charAt(i);
+			reverse = str.charAt(i) + reverse;
+		}
+		else
+		{
+			if(!saved.equals(reverse))
+			{
+				output += saved;
+			}
+			saved = "";
+			reverse = "";
 		}
 	}
 return output;	
@@ -618,7 +623,40 @@ public boolean magicalString(String str1,String str2)
 	
 	return true;
 }
-    
+
+public List<String> phoneDigit(String number)
+{
+	List<String> list = new ArrayList<>();
+	mapping(number, "", list);
+	return list;
+}
+
+public void mapping(String str,String output,List<String> list)
+{
+	
+	String[] words = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+	
+	if(str.length() == 0)
+	{
+		list.add(output);
+		return;
+	}
+	
+	int digit = str.charAt(0) - '0';
+	
+	for(int i = 0; i < words[digit].length();i++)
+	{
+		char ch = words[digit].charAt(i);
+		String ans = str.substring(1);
+		mapping(ans,output+ch, list);
+	}	
+}
+
+
+
+
+
+
 	public static void main(String[] args) {
 			
 			Solution solCall = new Solution();
@@ -728,6 +766,10 @@ public boolean magicalString(String str1,String str2)
 		
 		case 21:
 			System.out.println(solCall.magicalString("bda", "ywz"));
+			break;
+			
+		case 22:
+			System.out.println(solCall.phoneDigit("23"));
 			break;	
 	}
 	scan.close();
