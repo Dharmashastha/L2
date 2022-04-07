@@ -2,7 +2,9 @@ package array;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -137,6 +139,111 @@ public String balancePoint(String inp, int len) {
         } 
 }
 
+public int minimum_difference(int[] nums)
+{
+    int ans = 0;
+    
+    List<Integer> out = new ArrayList<>(500);
+    
+    for(int i = 0; i < nums.length;i++)
+    {
+        for(int j = i+1; j < nums.length; j++)
+        {
+                ans = nums[i] - nums[j];
+                if(ans < 0)
+                {
+                	ans = 0 - ans;
+                }
+                out.add(ans);
+            
+        }
+    }
+    Collections.sort(out);
+return out.get(0);    
+}
+
+void rearrange(int nums[], int n) {
+    
+    List<Integer> ans = new ArrayList<>();
+     for(int i = 0; i < nums.length; i++)
+     {
+         if(nums[i] >= 0)
+         {
+            ans.add(nums[i]);
+         }
+     }
+     int j = 1;
+     for(int i = 0; i < nums.length; i++)
+     {
+    	 
+    	 if(nums[i] < 0)
+         {
+    		 ans.add(j,nums[i]);
+    		 j = j + 2;
+         }
+      }     
+}
+
+public static int kthSmallest(int[] arr, int l, int r, int k) 
+{ 
+    Arrays.sort(arr);
+    int count = 0;
+    int min = Integer.MAX_VALUE;
+    for(int i = 0; i < r; i++)
+    {
+        min = Math.min(arr[i],min);
+        count++;
+        if(count == k)
+        {
+            return arr[i];
+        }
+    }
+return 0;
+}
+
+int getPairsCount1(int[] arr, int n, int k) {
+    
+    int count = 0;
+    Map<Integer,Integer> ans = new HashMap<>();
+    
+    for(int i = 0; i < n; i++)
+    {
+        if(ans.containsKey(k - arr[i]))
+        {
+            count += ans.get(k - arr[i]);
+        }
+        
+		/*
+		 * if(ans.containsKey(arr[i])) { ans.put(arr[i],ans.get(arr[i])+1); }
+		 */
+		/*
+		 * else {
+		 */
+            ans.put(arr[i],1);
+       // }
+    }
+return count;    
+}
+
+long maxSubarraySum(int arr[], int n){
+    
+    int sum = 0;
+    int ans = arr[0];
+    for(int i = 0; i < n ;i++)
+    {
+       if(sum < 0)
+       {
+            sum = 0;
+       }
+       sum = sum + arr[i];
+       if(sum > ans)
+       {
+           ans = sum;
+       }
+   }
+   return ans;
+}    
+
 	public static void main(String[] args) 
 	{
 		Scanner sc = new Scanner(System.in); 
@@ -186,9 +293,34 @@ public String balancePoint(String inp, int len) {
 			case 4:
 				int a2[] = {1,1,3,5,3,2,2};
 				System.out.println(solCall.numIdenticalPairs(a2));
+				break;
+				
+			case 5:
+				int a3[] = {3, 10, 8, 6};
+				System.out.println(solCall.minimum_difference(a3));
+				break;
+				
+			case 6:
+				int b[] = {9, 4, -2, -1, 5, 0, -5, -3, 2};
+				solCall.rearrange(b, 9);
+				break;
+			
+			case 7:
+				int b1[] = {7,10,4,3,20,15};
+				System.out.println(Solution.kthSmallest(b1, 0, 6, 3));
+				break;
+				
+			case 8:
+				int b2[] = {1,5,7,-1,5,1,5};
+				System.out.println(solCall.getPairsCount1(b2, 7, 6));
+				break;
+				
+			case 9:
+				int c[] = {-1,-2,-3,-4};
+				System.out.println(solCall.maxSubarraySum(c, 4));
 				break;	
 		}
-		
+	sc.close();	
 	}
 
 }
