@@ -1,5 +1,8 @@
 package array2;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class ArrayOutput {
@@ -17,35 +20,58 @@ public class ArrayOutput {
 		
 		case 1:
 		{
-			int arr[] = {3, 4, 1, 9, 56, 7, 9, 12};
-			System.out.println(solCall.minimumGetValue(arr, 8, 5));
+			int arr[] = {7, 3, 2, 4, 9, 12, 56};
+			System.out.println(solCall.minimumGetValue(arr, 3));
 			break;
 		}
 			
 		case 2:
-			
+		{	
+			int arr[]= {1,2,3,4,5};
+			System.out.println(solCall.sumClosestValue(arr, 5, 10));
 			break;	
-		
+		}
 		case 3:
+		{
+			int arr[] = {1,2,3,4,5};
+			int out[] = solCall.rotateOnePosition(arr, 5);
+			for(int saved:out)
+			{
+				System.out.print(saved+" ");
+			}
 			
 			break;
-			
+		}	
 		case 4:
-	
+		{	
+			char arr1[] = {'a','b','c','d','e','f','g','h','i'};
+			char arr2[] = {'a','b','d','e','e','g','g','i','i'};
+			System.out.println(solCall.mismatchPair(arr1, arr2));
 			break;
-	
+		}	
 		case 5:
-	
+		{	
+			int arr[] = {10, 9, 5, 9, 0, 10, 2, 10, 1, 9};
+			System.out.println(solCall.sumIsEqualNumber(arr, 10, 12));
 			break;
-	
+		}	
 		case 6:
-	
+		{
+			int arr[] = {1,4,3,5,2};
+			int[] output = solCall.rotateArrayPosition(arr, 5);
+			for(int saved:output)
+			{
+				System.out.print(saved+" ");
+			}
 			break;
-	
+		}	
 		case 7:
-	
+		{
+			List<Integer> array1 = new ArrayList<>(Arrays.asList(1,2,5,3,8,9));
+			List<Integer> array2 = new ArrayList<>(Arrays.asList(1,7,5,8,8));
+			
 			break;
-	
+		}	
 		case 8:
 	
 			break;
