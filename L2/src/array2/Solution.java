@@ -131,11 +131,143 @@ return array;
 }
 
 
-public List<Integer> unionExceptIntersect(List<Integer> array1,List<Integer> array2)
+public void unionExceptIntersect(List<Integer> array1,List<Integer> array2)
 {
+ 	List<Integer> union = new ArrayList<>();
+	List<Integer> except = new ArrayList<>();
+	List<Integer> intersect = new ArrayList<>();
 	
+	for(int i = 0; i < array1.size(); i++)
+	{
+		Integer dummy = (Integer) array1.get(i);
+		
+		if(!union.contains(dummy))
+		{
+			union.add(dummy);
+		}
+		
+		if(dummy % 2 == 0)
+		{
+			except.add(dummy);
+		}
+		
+		if(array2.contains(dummy) && !intersect.contains(dummy))
+		{
+			intersect.add(dummy);
+		}
+	}
 	
+	for(int i = 0; i < array2.size(); i++)
+	{
+		Integer dummy = (Integer) array2.get(i);
+		
+		if(!union.contains(dummy))
+		{
+			union.add(dummy);
+		}
+		
+		if(dummy % 2 == 1)
+		{
+			except.add(dummy);
+		}
+		
+		if(array1.contains(dummy) && !intersect.contains(dummy))
+		{
+			intersect.add(dummy);
+		}
+	}
 	
-	return null;
+	System.out.println(union);
+	System.out.println(except);
+	System.out.println(intersect);
+}
+
+public Map<Integer,Integer> duplicateCount(int array[],int n)
+{
+	Map<Integer,Integer> ans = new HashMap<>();
+	
+	for(int i = 0; i < n; i++)
+	{
+		if(ans.containsKey(array[i]))
+		{
+			ans.put(array[i], ans.get(array[i])+1);
+		}
+		else
+		{
+			ans.put(array[i], 1);
+		}
+	}
+return ans;	
+}
+
+public int longestSubSequence(int arr[],int n)
+{
+	List<Integer> ans = new ArrayList<>();
+	
+	for(int i = 0; i < n - 1;i++)
+	{
+		if(arr[i] < arr[i+1])
+		{
+			ans.add(arr[i]);
+		}
+	}
+	if(arr[n - 1] > arr[n - 2])
+	{
+		ans.add(arr[n - 1]);
+	}
+return ans.size();	
+}
+
+public boolean nonDecreasingArray(int arr[],int n)
+{
+	int count = 0;
+	for(int i = 0; i < n - 1; i++)
+	{
+		if(arr[i] > arr[i+1])
+		{
+			 count++;
+		}
+	}
+	if(1 >= count)
+	{
+		return true;
+	}
+return false;	
+}
+
+public boolean multiSetSum(int arr[],int n)
+{
+	Arrays.sort(arr);
+	return sumDigitArray(arr, 0, 1, n);
+	
+}
+
+public boolean sumDigitArray(int arr[],int start,int end,int n)
+{
+	int ans1 = 0;
+	int ans2 = 0;
+	
+	for(int i = 0; i < end; i++)
+	{
+		ans1 += arr[i];
+	}
+	for(int i = end; i < n; i++)
+	{
+		ans2 += arr[i];
+	}
+	if(ans1 == ans2)
+	{
+		return true;
+	}
+	if(end == n - 1)
+	{
+		return false;
+	}
+return sumDigitArray(arr, start, end+1, n);	
+}
+
+public int multiplyMaxValue(int arr[],int n)
+{
+	return 0;
 }
 }

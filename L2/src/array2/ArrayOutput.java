@@ -69,24 +69,33 @@ public class ArrayOutput {
 		{
 			List<Integer> array1 = new ArrayList<>(Arrays.asList(1,2,5,3,8,9));
 			List<Integer> array2 = new ArrayList<>(Arrays.asList(1,7,5,8,8));
-			
+			solCall.unionExceptIntersect(array1, array2);
 			break;
 		}	
 		case 8:
-	
+		{
+			int arr[] = {2,3,6,2,2,1,6};
+			System.out.println(solCall.duplicateCount(arr, 7));
 			break;
-	
+		}	
 		case 9:
-	
+		{
+			int arr[] = {1,5,2,3,4};
+			System.out.println(solCall.longestSubSequence(arr, 5));
 			break;
-	
+		}	
 		case 10:
-	
+		{
+			int arr[] = {10,5,1};
+			System.out.println(solCall.nonDecreasingArray(arr, 3));
 			break;
+		}	
 		case 11:
-	
+		{
+			int arr[] = {15,5,20,10,35,15,10};
+			System.out.println(solCall.multiSetSum(arr, 7));
 			break;
-	
+		}	
 		case 12:
 	
 			break;
