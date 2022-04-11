@@ -33,10 +33,10 @@ public String sumClosestValue(int arr[],int n,int x)
 	String saved = "";
 	for(int i = 0; i < n; i++)
 	{
-		for(int j = 0+i; j < n; j++)
+		for(int j = i+1; j < n; j++)
 		{
 			temp = Math.abs(x-(arr[i]+arr[j]));
-			if(temp < min && i != j)
+			if(temp < min)
 			{
 				min = Math.min(temp,min);
 				saved = arr[i]+" "+arr[j];
@@ -239,7 +239,6 @@ public boolean multiSetSum(int arr[],int n)
 {
 	Arrays.sort(arr);
 	return sumDigitArray(arr, 0, 1, n);
-	
 }
 
 public boolean sumDigitArray(int arr[],int start,int end,int n)
@@ -268,6 +267,131 @@ return sumDigitArray(arr, start, end+1, n);
 
 public int multiplyMaxValue(int arr[],int n)
 {
-	return 0;
+	int max = Integer.MIN_VALUE;
+	
+	for(int i = 0; i < n;i++)
+	{
+		for(int j = i+1; j < n; j++)
+		{
+			for(int k = j+1;k < n; k++)
+			{
+				max = Math.max(max, Math.abs((arr[i])*arr[j]*arr[k]));
+			}
+		}
+	}
+	return max;
 }
+
+public int sumOfDigits(int number)
+{
+	int sum=0,digit = 0;
+	
+	while(number > 0)
+	{
+		digit = number % 10;
+		sum += digit;
+		number /= 10;
+	}
+return sum;	
+}
+
+public String getPerfectNumber(int number)
+{
+	int saved = 0;
+	
+	saved = sumOfDigits(number);
+	
+	saved = 10 - saved;
+	
+return number+""+saved;	
+}
+
+public int[] rotateArraySizePosition(int array[],int n,int rotate)
+{
+	int temp = 0;
+
+	while(rotate > 0)
+	{
+	for(int i = 0; i < n - 1; i++)
+	{
+		temp = array[i];
+		array[i] = array[i+1];
+		array[i+1] = temp;
+	}
+	rotate--;
+	}
+return array;	
+}
+
+public int[] ascendingOrder(int arr[],int n)
+{
+	int dummy = 0;
+	int min = Integer.MAX_VALUE;
+	int j = 0;
+	
+	for(int i = 0; i < n; i++)
+	{
+		dummy = sumOfDigits(arr[i]);
+		if(dummy < min)
+		{
+			min = Math.min(min, dummy);
+			arr[j] = arr[i];
+		}
+	}
+	return arr;
+}
+
+public String closestNumberPair(int arr[],int n)
+{
+	int min = Integer.MAX_VALUE;
+	int dummy = 0;
+	String saved = "";
+	
+	for(int i = 0; i < n; i++)
+	{
+		for(int j = i+1; j < n; j++)
+		{
+			dummy = Math.abs(arr[i] - arr[j]);
+			if(min  > dummy)
+			{
+				min = Math.min(dummy, min);
+				saved = arr[j]+","+arr[i];  
+			}
+		}
+	}
+return saved; 	
+}
+
+public void patternOutput(int arr[],int n)
+{
+	for(int i = 0; i < n ;i++)
+	{
+		for(int j = 0; j <= i; j++)
+		{
+			if(j == 0)
+			{
+				System.out.print(arr[i]+" ");
+			}
+			else if(j == 1)
+			{
+				System.out.print(arr[i+4]+" ");
+			}
+			else if(j == 2)
+			{
+				System.out.print(arr[i+7]+" ");
+			}
+			else if(j == 3) 
+			{ 
+				System.out.print(arr[i+9]+" "); 
+			} 
+			else
+			{
+				System.out.print(arr[i+10]+" "); 
+			}
+		}	
+		System.out.println();
+	}
+}
+
+
 }

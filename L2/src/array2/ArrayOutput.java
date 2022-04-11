@@ -57,7 +57,7 @@ public class ArrayOutput {
 		}	
 		case 6:
 		{
-			int arr[] = {1,4,3,5,2};
+			int arr[] = {1,2,3,4,5};
 			int[] output = solCall.rotateArrayPosition(arr, 5);
 			for(int saved:output)
 			{
@@ -97,29 +97,48 @@ public class ArrayOutput {
 			break;
 		}	
 		case 12:
-	
+		{
+			int arr[] = {-10,-10,5,2};
+			System.out.println(solCall.multiplyMaxValue(arr, 4));
 			break;
-	
+		}	
 		case 13:
-	
+		{
+			System.out.println(solCall.getPerfectNumber(2));
 			break;
-	
+		}	
 		case 14:
-	
+		{
+			int arr[] = {1,2,3,4,5};
+			int[] output = solCall.rotateArraySizePosition(arr, 5,2);
+			for(int saved:output)
+			{
+				System.out.print(saved+" ");
+			}
 			break;
-			
+		}	
 		case 15:
-			
+		{
+			int arr[] = {901,40,35,0,60,900,903,1000};
+			System.out.println(solCall.closestNumberPair(arr, 8));
 			break;
-			
+		}	
 		case 16:
-	
+		{
+			int arr[] = {17,85,23,60};
+			int output[] = solCall.ascendingOrder(arr, 4);
+			for(int saved:output)
+			{
+				System.out.println(saved);
+			}
 			break;
-			
+		}	
 		case 17:
-	
+		{
+			int arr[] = {12,19,38,56,34,23,18,69,41,12,45,78,43,99,10};
+			solCall.patternOutput(arr, 5);
 			break;
-	
+		}	
 		case 18:
 	
 			break;
