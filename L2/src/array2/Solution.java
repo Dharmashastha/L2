@@ -393,5 +393,36 @@ public void patternOutput(int arr[],int n)
 	}
 }
 
+public void maximumNumberOne(int arr[][],int n,int m)
+{
+	int count = 0;
+	int index;
+	for(int i = 0; i < n; i++)
+	{
+		int row[] = arr[i];
+		for(int j = 0; j < m; j++)
+		{
+			if(row[j] == 1)
+			{
+				count++;
+				index = i;
+			}
+			
+		}
+	}
+	return ;
+}
+
+public void sorting(int arr[][])
+{
+	
+	for(int i = 0; i < arr[0].length; i++)
+	{
+		int row[] = arr[i];
+		Arrays.sort(row);
+		arr[i] = row;
+	}
+	System.out.println(Arrays.deepToString(arr));
+}
 
 }

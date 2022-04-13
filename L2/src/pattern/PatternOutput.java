@@ -1,6 +1,9 @@
 package pattern;
 
+import java.util.Arrays;
 import java.util.Scanner;
+
+import sorting.Sort;
 
 
 public class PatternOutput {
@@ -116,6 +119,14 @@ public class PatternOutput {
 		case 17:
 		{
 			System.out.println(solCall.countAndSay(5));
+			break;
+		}
+		
+		case 18:
+		{
+			int arr[] = {3,2,4,1};
+			//Sort.bitonicGenerator(arr, 8);
+			System.out.println(Sort.candyStore(arr, 4, 2));
 			break;
 		}
 		

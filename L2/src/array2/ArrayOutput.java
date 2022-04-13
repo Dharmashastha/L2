@@ -140,9 +140,18 @@ public class ArrayOutput {
 			break;
 		}	
 		case 18:
-	
+		{
+			int arr[][] = 
+			{
+					{5,2,0,7,1},
+					{3,4,2,9,14},
+					{5,1,3,5,2},
+					{4,2,6,2,1},
+					{0,6,3,5,1}	
+			};
+			solCall.sorting(arr);
 			break;
-	
+		}	
 		case 19:
 	
 			break;
