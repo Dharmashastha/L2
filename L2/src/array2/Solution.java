@@ -3,8 +3,10 @@ package array2;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Solution {
 
@@ -393,10 +395,12 @@ public void patternOutput(int arr[],int n)
 	}
 }
 
-public void maximumNumberOne(int arr[][],int n,int m)
+public int[][] maximumNumberOne(int arr[][],int n,int m)
 {
 	int count = 0;
-	int index;
+	int index = 0;
+	int max = Integer.MIN_VALUE;
+	
 	for(int i = 0; i < n; i++)
 	{
 		int row[] = arr[i];
@@ -405,12 +409,20 @@ public void maximumNumberOne(int arr[][],int n,int m)
 			if(row[j] == 1)
 			{
 				count++;
-				index = i;
+				if(max < count)
+				{
+					max = Math.max(max, count);
+					index = i;
+				}
 			}
-			
 		}
+		count = 0;
 	}
-	return ;
+		for(int j = 0; j < m; j++)
+		{
+			arr[index][j] = 0;
+		}
+	return arr;
 }
 
 public void sorting(int arr[][])
@@ -424,5 +436,40 @@ public void sorting(int arr[][])
 	}
 	System.out.println(Arrays.deepToString(arr));
 }
+
+
+public void setZeroes(int[][] matrix) 
+{
+    
+    Set<Integer> row = new HashSet<>();
+    Set<Integer> col = new HashSet<>();
+    
+     for(int i = 0; i < matrix.length; i++)
+    {
+        for(int j = 0; j < matrix[0].length; j++)
+        {
+            if(matrix[i][j] == 0)
+            {
+                row.add(i);
+                col.add(j);
+            }
+        }
+    }
+    
+    for(int i = 0; i < matrix.length; i++)
+    {
+        for(int j = 0; j < matrix[0].length; j++)
+        {
+            if(row.contains(i) || col.contains(j))
+            {
+                matrix[i][j] = 0;
+            }    
+        }
+    }
+    
+    System.out.println(Arrays.deepToString(matrix));
+}
+
+
 
 }

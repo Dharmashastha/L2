@@ -153,13 +153,23 @@ public class ArrayOutput {
 			break;
 		}	
 		case 19:
-	
+		{
+			int arr[][] =
+				{ 
+					{0, 1, 1, 1},
+					{0, 0, 1, 1},
+				    {1, 1, 1, 1},
+					{0, 0, 0, 0} 
+				};
+			int n = 4, m = 4;
+			System.out.println(Arrays.deepToString(solCall.maximumNumberOne(arr, n, m)));
 			break;
-	
+		}	
 		case 20:
-	
+		{	int arr[][] = {{0,1,2,0},{3,4,5,2},{1,3,1,5}};
+			solCall.setZeroes(arr);
 			break;
-
+		}	
 		default:
 			
 			break;
