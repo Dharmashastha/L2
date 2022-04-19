@@ -470,6 +470,27 @@ public void setZeroes(int[][] matrix)
     System.out.println(Arrays.deepToString(matrix));
 }
 
-
+int tour(int petrol[], int distance[])
+{
+    int start = 0;
+    int reqdFuel = 0;
+    int availFuel = 0;
+    
+    for(int i = 0; i < petrol.length; i++)
+    {
+        availFuel += petrol[i] - distance[i];
+        if(availFuel < 0)
+        {
+            reqdFuel += availFuel;
+            availFuel = 0;
+            start = i + 1;
+        }
+	    }
+	    if(reqdFuel + availFuel >= 0)
+	    {
+	        return start;
+	    }
+	return -1;    
+}
 
 }

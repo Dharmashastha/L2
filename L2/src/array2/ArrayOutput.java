@@ -169,7 +169,14 @@ public class ArrayOutput {
 		{	int arr[][] = {{0,1,2,0},{3,4,5,2},{1,3,1,5}};
 			solCall.setZeroes(arr);
 			break;
-		}	
+		}
+		
+		case 21:
+		{	int arr[]  = {4,6,7,4};
+			int arr2[] = {6,5,3,5};
+			System.out.println(solCall.tour(arr, arr2));
+			break;
+		}
 		default:
 			
 			break;
